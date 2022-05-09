@@ -21,9 +21,10 @@
       <input id="input" autocomplete="off"/><button>Send</button>
     </form>
 
-    <script src="modules/socket.io/client-dist/socket.io.js"></script>
+    <script src="http://localhost:8080/node_modules/socket.io/client-dist/socket.io.js"></script>
     <script>
-        var socket = io();
+        console.log("ABC");
+        var socket = io("localhost:3000");
 
         var messages = document.getElementById('messages');
         var form = document.getElementById("form");
