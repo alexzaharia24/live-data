@@ -1,0 +1,41 @@
+services:
+  redis:
+    container_name: redis
+    image: redis
+    volumes:
+      - ./data:/data
+    networks:
+      - live-data-nw
+    ports:
+      - 127.0.0.1:6379:6379
+  live-data-1:
+    container_name: live-data-1
+    build: .
+    command: npm start
+    volumes: 
+      - .:/app
+    ports: 
+      - 3000:3000
+    depends_on:
+      - redis
+    environment:
+      - PORT=3000
+    networks:
+      - live-data-nw
+  live-data-2:
+    container_name: live-data-2
+    build: .
+    command: npm start
+    volumes: 
+      - .:/app
+    ports: 
+      - 3001:3001
+    depends_on:
+      - redis
+    environment:
+      - PORT=3001
+    networks:
+      - live-data-nw
+networks:
+  live-data-nw:
+    external: true

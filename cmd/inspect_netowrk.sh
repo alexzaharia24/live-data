@@ -1,0 +1,1 @@
+docker inspect redis -f "{{json .NetworkSettings.Networks }}"
