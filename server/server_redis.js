@@ -7,12 +7,13 @@ const { Server } = require('socket.io');
 const { createClient } = require("redis");
 const { createAdapter } = require("@socket.io/redis-adapter");
 const { Emitter } = require("@socket.io/redis-emitter");
-
+const { exec } = require('child_process');
 
 const app = express();
+app.use(cors());
+
 const server = http.createServer(app);
 
-app.use(cors());
 
 const io = new Server(server, {
     cors: {
@@ -24,6 +25,8 @@ const io = new Server(server, {
 const run = async () => {
     const pubClient = createClient({ url: "redis://172.20.0.2:6379" });
     const subClient = pubClient.duplicate();
+
+    exec("ping redis");
 
     // app.use('/modules', express.static(path.join(__dirname, 'node_modules')));
 

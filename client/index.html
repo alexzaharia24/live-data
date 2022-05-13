@@ -23,8 +23,7 @@
 
     <script src="http://localhost:8080/node_modules/socket.io/client-dist/socket.io.js"></script>
     <script>
-        console.log("ABC");
-        var socket = io("localhost:3000");
+        var socket = io("http://localhost:9000");
 
         var messages = document.getElementById('messages');
         var form = document.getElementById("form");

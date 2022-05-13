@@ -8,6 +8,17 @@ services:
       - live-data-nw
     ports:
       - 127.0.0.1:6379:6379
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    volumes: 
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - redis
+    ports:
+      - 9000:9000
+    networks:
+      - live-data-nw
   live-data-1:
     container_name: live-data-1
     build: ./server
